@@ -9,7 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/calculator', [CalculatorController::class, 'showCalculatorPage']);
-
+Route::post('/calculate', [CalculatorController::class, 'calculate']) ->name ('callcalculate');
 
 
 Route::get('/index', function () {
