@@ -11,8 +11,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->append(\App\Http\Middleware\PreventBackOptionAfterLogoutMiddleware::class,);
+        
+        $middleware->alias([
+            'login.middleware' => \App\Http\Middleware\ValidateLogin::class,
+            'role' =>  \App\Http\Middleware\RoleMiddleware::class,
+        ]);//register middleware using aliases name 
     })
+
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
